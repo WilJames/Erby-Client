@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/static/logs.css">
+  <link rel="icon" href="/static/favicon.png" type="image/png">
+  <title>Erby Логи</title>
+</head>
+<body>
+  <header>
+    <div class="group">
+      <div class="label">Сервер</div>
+      <div class="pill" id="serverLvlWrap" title="Уровень лога сервера (запись в config.ini)">
+        <button class="lvlbtn" data-srv="DEBUG">DEBUG</button>
+        <button class="lvlbtn" data-srv="INFO">INFO</button>
+        <button class="lvlbtn" data-srv="WARNING">WARNING</button>
+        <button class="lvlbtn" data-srv="ERROR">ERROR</button>
+        <button class="lvlbtn" data-srv="CRITICAL">CRITICAL</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="label">Просмотр</div>
+      <button id="pauseBtn" class="btn">Пауза</button>
+    </div>
+
+    <div class="group">
+      <div class="label">Показать</div>
+      <div class="pill lvlbar" id="lvlbar" title="Click: один уровень. Shift+Click: мульти-выбор.">
+        <button class="lvlbtn active" data-lvl="ALL" id="lvlAll">Все</button>
+        <button class="lvlbtn lvl-DEBUG" data-lvl="DEBUG">DEBUG</button>
+        <button class="lvlbtn lvl-INFO" data-lvl="INFO">INFO</button>
+        <button class="lvlbtn lvl-WARNING" data-lvl="WARNING">WARN</button>
+        <button class="lvlbtn lvl-ERROR" data-lvl="ERROR">ERROR</button>
+        <button class="lvlbtn lvl-CRITICAL" data-lvl="CRITICAL">CRIT</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="label">Фильтр</div>
+      <input id="q" placeholder="Поиск…" size="22"/>
+      <input id="max" type="number" min="100" step="100" value="2000" title="Макс. строк"/>
+      <button id="clearBtn" class="btn">Очистить</button>
+    </div>
+  </header>
+
+  <div id="log"></div>
+
+  <footer id="statusbar">
+    <div class="sb-left">
+      <span class="sb-pill" id="sbConn">SSE: …</span>
+      <span class="sb-pill" id="sbTail">Tail: ON</span>
+      <label class="sb-pill" id="sbAuto">
+        <input id="autoscroll" type="checkbox" checked/>
+        <span>Автоскролл</span>
+      </label>
+    </div>
+
+    <div class="sb-mid">
+      <span class="sb-pill" id="sbLines">Строк: 0</span>
+      <span class="sb-pill" id="sbCounts">D:0 I:0 W:0 E:0 C:0</span>
+    </div>
+
+    <div class="sb-right">
+      <button class="sb-pill" id="sbFont" title="Клик для сброса шрифта на 10pt">Шрифт: 10pt</button>
+    </div>
+  </footer>
+
+  <script src="/static/logs.js"></script>
+</body>
+</html>

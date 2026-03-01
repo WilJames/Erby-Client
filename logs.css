@@ -1,0 +1,310 @@
+/* ===============================
+   Erby Logs UI (logs.css)
+   Dracula-ish theme
+   =============================== */
+
+:root {
+    color-scheme: dark;
+    --log-font-pt: 10;
+}
+
+/* -------------------------------
+   Base
+   ------------------------------- */
+body {
+    margin: 0;
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+    background: #282a36;
+    color: #f8f8f2;
+}
+
+/* -------------------------------
+   Header / Controls
+   ------------------------------- */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 10px 12px;
+    background: #1f2230;
+    border-bottom: 1px solid #3a3d4f;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.label {
+    font-size: 10px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #62687d;
+    margin-right: 2px;
+}
+
+/* Controls (inputs/buttons) */
+input,
+button {
+    background: #1b1e2b;
+    color: #f8f8f2;
+    border: 1px solid #3a3d4f;
+    border-radius: 10px;
+    padding: 6px 10px;
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    border-color: #6272a4;
+}
+
+/* "Pill" containers */
+.pill {
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid #3a3d4f;
+    background: #1b1e2b;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.muted {
+    opacity: 0.75;
+}
+
+/* Pause button active state */
+.btn.pause-active {
+    border-color: #ff79c6;
+    box-shadow: 0 0 0 2px rgba(255, 121, 198, 0.18) inset;
+}
+
+/* -------------------------------
+   Log area
+   ------------------------------- */
+#log {
+    padding: 10px 12px;
+    padding-bottom: 52px;
+    /* place for statusbar */
+    font-size: calc(var(--log-font-pt) * 1pt);
+    line-height: 1.4;
+    letter-spacing: 0.2px;
+}
+
+.line {
+    display: block;
+    padding: 2px 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* -------------------------------
+   Token colors (line parsing)
+   ------------------------------- */
+.t-dt {
+    color: #62687d;
+}
+
+.t-lvl-DEBUG {
+    color: #ffb85c;
+    font-weight: 600;
+}
+
+.t-lvl-INFO {
+    color: #4afa7b;
+    font-weight: 600;
+}
+
+.t-lvl-WARNING {
+    color: #f1fa8c;
+    font-weight: 600;
+}
+
+.t-lvl-ERROR {
+    color: #ff5555;
+    font-weight: 700;
+}
+
+.t-lvl-CRITICAL {
+    color: #ff79c6;
+    font-weight: 800;
+}
+
+.t-br {
+    color: #f8f8f2;
+    /* brackets + pipes */
+}
+
+.t-dot {
+    color: #af93da;
+    /* tokens containing dots */
+}
+
+.t-msg {
+    color: #f8f8f2;
+}
+
+/* текст в '...' */
+.t-quote {
+    color: #f1ed68;
+}
+
+/* числа */
+.t-num {
+    color: #af93da;
+}
+
+.t-url {
+    color:#af93da;
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+/* direction markers */
+.t-dir-out { color:#8be9fd; font-weight:700; } /* > */
+.t-dir-in  { color:#50fa7b; font-weight:700; } /* < */
+.t-dir-sys { color:#af93da; font-weight:700; } /* % */
+
+/* -------------------------------
+   Level buttons
+   ------------------------------- */
+.lvlbar {
+    padding: 6px 8px;
+}
+
+.lvlbtn {
+    border: 1px solid #3a3d4f;
+    background: #1b1e2b;
+    color: #f8f8f2;
+    border-radius: 10px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.lvlbtn:hover {
+    border-color: #6272a4;
+}
+
+.lvlbtn.active {
+    border-color: #6272a4;
+    box-shadow: 0 0 0 2px rgba(98, 114, 164, 0.25) inset;
+}
+
+/* Active colors */
+.lvlbtn.lvl-DEBUG.active {
+    color: #ffb85c;
+}
+
+.lvlbtn.lvl-INFO.active {
+    color: #4afa7b;
+}
+
+.lvlbtn.lvl-WARNING.active {
+    color: #f1fa8c;
+}
+
+.lvlbtn.lvl-ERROR.active {
+    color: #ff5555;
+}
+
+.lvlbtn.lvl-CRITICAL.active {
+    color: #ff79c6;
+}
+
+.lvlbtn#lvlAll.active {
+    color: #f8f8f2;
+}
+
+/* Server level "active" (green highlight) */
+.lvlbtn.srv-active {
+    border-color: #50fa7b;
+    box-shadow: 0 0 0 2px rgba(80, 250, 123, 0.22) inset;
+}
+
+/* -------------------------------
+   Status bar (bottom)
+   ------------------------------- */
+#statusbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding: 0 10px;
+    background: rgba(31, 34, 48, 0.92);
+    border-top: 1px solid #3a3d4f;
+    backdrop-filter: blur(6px);
+    z-index: 20;
+}
+
+.sb-left,
+.sb-mid,
+.sb-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.sb-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid #3a3d4f;
+    background: #1b1e2b;
+    color: #f8f8f2;
+
+    font-size: 10.5px;
+    white-space: nowrap;
+    cursor: default;
+}
+
+button.sb-pill {
+    cursor: pointer;
+}
+
+button.sb-pill:hover {
+    border-color: #6272a4;
+}
+
+.sb-pill.dim {
+    opacity: 0.75;
+}
+
+.sb-pill.good {
+    border-color: rgba(80, 250, 123, 0.55);
+}
+
+.sb-pill.bad {
+    border-color: rgba(255, 85, 85, 0.65);
+}
+
+.sb-pill.warn {
+    border-color: rgba(241, 250, 140, 0.70);
+}
+
+#statusbar input[type="checkbox"] {
+    transform: translateY(1px);
+}
